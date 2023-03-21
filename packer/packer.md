@@ -266,6 +266,7 @@ aws ec2 create-key-pair --key-name my-lab-key --query KeyMaterial --output text 
 chmod 600 my-lab-key.pem
 echo "export AWS_KEYPAIR=my-lab-key" >> ~/.bashrc
 source ~/.bashrc
+aws ec2 describe-key-pairs
 ```
 
 Launch a new instance from this AMI: 
