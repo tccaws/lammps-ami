@@ -129,7 +129,6 @@ These commands download the LAMMPS source code and compile it using the Intel on
 Copy the following contents to your **resources/run-example.sh** script.
 ```bash
 #!/bin/bash
-echo "Hello from run-example.sh"
 module load icc mpi mkl
 cd /opt/lammps/bm
 which mpirun
