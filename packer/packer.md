@@ -1,5 +1,5 @@
 # HPC AMI example with Packer
-In this tutorial you'll install Packer and use it to build a custom Amazon Machine Image (AMI) containing an HPC application, [LAMMPS](https://www.lammps.org/), and en example benchmark test. You will then launch an new instance from AMI and run the benchmark test.
+In this tutorial you'll install Packer and use it to build a custom Amazon Machine Image (AMI) containing an HPC application, [LAMMPS](https://www.lammps.org/), and en example benchmark test. You will then launch an new instance nfrom AMI and run the benchmark test.
 
 ## Install Hashicorp Packer on your Cloud9 IDE (or on your laptop)
 If you are running on a Cloud9 instance, execute the following instructions in a terminal to install Packer. Alternatively, you can install Packer on your laptop by following the instructions at [hashicorp.com](https://developer.hashicorp.com/packer/downloads).
@@ -102,7 +102,7 @@ module load icc mpi mkl
 
 sudo mkdir /opt/lammps
 sudo chown -R ec2-user:ec2-user /opt/lammps
-cd /opt/lammps
+cd /opt/
 git clone https://github.com/lammps/lammps.git
 cd lammps
 mkdir -p build
@@ -135,7 +135,7 @@ which mpirun
 ldd /opt/lammps/build/lmp_AWS
 export OMP_NUM_THREADS=1
 export NP=$(grep processor /proc/cpuinfo | wc -l)
-mpirun -n $NP /shared/lammps/build/lmp_AWS -in cu.in 
+mpirun -n $NP /opt/lammps/build/lmp_AWS -in cu.in 
 ```
 
 This script can be executed on an instance running the resultant AMI to run a small example LAMMPS text simulation.
