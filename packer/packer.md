@@ -154,7 +154,7 @@ sed '$d' in.eam.txt > cu.in
 ## Add new parameters
 echo 'dump            1 all atom 5000 cu_dump.lammpstrj' >> cu.in
 echo 'run             40000' >> cu.in
-cp /opt/lammps/bm/Cu_u3.eam .
+cp /opt/lammps/bench/Cu_u3.eam .
 
 cp -p /tmp/run-example.sh /opt/lammps/bm/
 chmod 744 /opt/lammps/bm/run-example.sh
