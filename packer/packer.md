@@ -147,7 +147,7 @@ Copy the following contents to your **scripts/install-example.sh** script.
 #!/bin/bash
 mkdir /opt/lammps/bm
 cd /opt/lammps/bm
-wget https://www.lammps.org/inputs/in.eam.txt
+curl -O https://www.lammps.org/inputs/in.eam.txt
 
 ## Remove the last line 
 sed '$d' in.eam.txt > cu.in
