@@ -5,8 +5,8 @@ In this tutorial you'll install Packer and use it to build a custom Amazon Machi
 If you are running on a Cloud9 instance, execute the following instructions in a terminal to install Packer. Alternatively, you can install Packer on your laptop by following the instructions at [hashicorp.com](https://developer.hashicorp.com/packer/downloads).
 
 ```bash
-sudo yum install -y yum-utils
-sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+sudo yum install -y yum-utils shadow-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
 sudo yum -y install packer
 ```
 
