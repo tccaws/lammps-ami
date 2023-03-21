@@ -107,6 +107,7 @@ git clone https://github.com/lammps/lammps.git
 cd lammps
 mkdir -p build
 cd build
+export NP=$(grep processor /proc/cpuinfo | wc -l)
 cmake3 ../cmake \
   -DPKG_MANYBODY=yes \
   -DPKG_REPLICA=yes \
@@ -119,8 +120,7 @@ cmake3 ../cmake \
   -DCMAKE_CXX_COMPILER=`which mpicxx` \
   -DWITH_JPEG=yes \
   -DWITH_GZIP=yes
-make -j 128
-
+make -j $NP
 ```
 
 These commands download the LAMMPS source code and compile it using the Intel oneAPI C++ compiler.
@@ -184,7 +184,7 @@ Copy the following contents to your **image.json** file.
             "owners": ["137112412989"],
             "most_recent": true
         },
-        "instance_type": "c6i.32xlarge",
+        "instance_type": "c6i.4xlarge",
         "ssh_username": "ec2-user",
         "iam_instance_profile": "{{user `iam_instance_role`}}",
         "ami_virtualization_type": "hvm",
@@ -271,7 +271,7 @@ aws ec2 describe-key-pairs
 
 Launch a new instance from this AMI: 
 1. Name it "LAMMPS-oneAPI-test".
-2. Choose **c6i.4xlarge**.
+2. Choose **c6i.8xlarge**.
 3. Specify your key pair above: **"my-lab-key"**.
 
 ## Connect to the instance and run the test LAMMPS job
@@ -287,7 +287,7 @@ cd /opt/lammps/bm
 You should see your job running and upon sucessful completion you should see a line resembling the following at the end of the output:
 
 ```text
-Total wall time: 0:02:33
+Total wall time: 0:01:23
 ```
 
 You can use the following command to report the simulation performance from the run:
@@ -299,5 +299,5 @@ grep Performance log.lammps
 You should see output that resembles the following:
 
 ```text
-Performance: 112.446 ns/day, 0.213 hours/ns, 260.292 timesteps/s, 8.329 Matom-step/s
+Performance: 206.005 ns/day, 0.117 hours/ns, 476.864 timesteps/s, 15.260 Matom-step/s
 ```
