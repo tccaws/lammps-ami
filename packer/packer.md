@@ -96,9 +96,9 @@ This script installs some of the Intel oneAPI compilers, libraries and tools, an
 Copy the following contents to your **scripts/install-lammps.sh** script.
 ```bash
 #!/bin/bash
-sudo yum install -y cmake3 zlib libjpeg nasm yasm
+sudo yum install -y cmake3 zlib libjpeg libjpeg-devel nasm yasm
 module avail
-module load oneapi-compilers oneapi-mpi
+module load icc mpi mkl
 
 sudo mkdir /opt/lammps
 sudo chown -R ec2-user:ec2-user /opt/lammps
@@ -119,7 +119,7 @@ cmake3 ../cmake \
   -DCMAKE_CXX_COMPILER=`which mpicxx` \
   -DWITH_JPEG=yes \
   -DWITH_GZIP=yes
-make -j 2
+make -j 128
 
 ```
 
@@ -184,7 +184,7 @@ Copy the following contents to your **image.json** file.
             "owners": ["137112412989"],
             "most_recent": true
         },
-        "instance_type": "c6i.large",
+        "instance_type": "c6i.32xlarge",
         "ssh_username": "ec2-user",
         "iam_instance_profile": "{{user `iam_instance_role`}}",
         "ami_virtualization_type": "hvm",
