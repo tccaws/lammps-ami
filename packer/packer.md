@@ -260,10 +260,18 @@ packer build image.json
 
 Once you've successfully built the image, you can navigate to the [AMI section of the AWS console](https://console.aws.amazon.com/ec2/home#Images) to see your newly built AMI, named "LAMMPS oneAPI".
 
+## Create a new key
+```bash
+aws ec2 create-key-pair --key-name my-lab-key --query KeyMaterial --output text > my-lab-key.pem
+chmod 600 my-lab-key.pem
+echo "export AWS_KEYPAIR=my-lab-key" >> ~/.bashrc
+source ~/.bashrc
+```
+
 Launch a new instance from this AMI: 
 1. Name it "LAMMPS-oneAPI-test".
 2. Choose **c6i.4xlarge**.
-3. Choose your preferred key pair.
+3. Specify your key pair above: **"my-lab-key"**.
 
 ## Connect to the instance and run the test LAMMPS job
 
