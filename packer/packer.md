@@ -96,7 +96,7 @@ This script installs some of the Intel oneAPI compilers, libraries and tools, an
 Copy the following contents to your **scripts/install-lammps.sh** script.
 ```bash
 #!/bin/bash
-sudo yum install -y cmake3 zlib libjpeg libjpeg-devel nasm yasm
+sudo yum install -y git cmake3 zlib libjpeg libjpeg-devel nasm yasm
 module avail
 module load icc mpi mkl
 
